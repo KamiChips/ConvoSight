@@ -1,0 +1,88 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: convosight_postgres
+    environment:
+      POSTGRES_USER: convosight
+      POSTGRES_PASSWORD: convosight
+      POSTGRES_DB: convosight
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  redis:
+    image: redis:7-alpine
+    container_name: convosight_redis
+    ports:
+      - "6379:6379"
+
+  api:
+    build: ./apps/api
+    container_name: convosight_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./apps/api:/app
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://convosight:convosight@postgres:5432/convosight
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - postgres
+      - redis
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  worker-csv:
+    build: ./apps/api
+    container_name: convosight_worker_csv
+    volumes:
+      - ./apps/api:/app
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://convosight:convosight@postgres:5432/convosight
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - postgres
+      - redis
+    command: celery -A app.workers.celery_app worker -Q csv_queue --loglevel=info
+
+  worker-rag:
+    build: ./apps/api
+    container_name: convosight_worker_rag
+    volumes:
+      - ./apps/api:/app
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://convosight:convosight@postgres:5432/convosight
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - postgres
+      - redis
+    command: celery -A app.workers.celery_app worker -Q rag_queue --loglevel=info
+
+  worker-analysis:
+    build: ./apps/api
+    container_name: convosight_worker_analysis
+    volumes:
+      - ./apps/api:/app
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://convosight:convosight@postgres:5432/convosight
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - postgres
+      - redis
+    command: celery -A app.workers.celery_app worker -Q analysis_queue --loglevel=info
+
+  web:
+    build: ./apps/web
+    container_name: convosight_web
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./apps/web:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
