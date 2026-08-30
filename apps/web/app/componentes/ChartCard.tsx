@@ -24,7 +24,7 @@ export default function ChartCard({ title, data }: ChartCardProps) {
 
   return (
     <div
-      className="w-full"
+      className="bg-[#0F284C] border border-[#7A9EB8] border-opacity-20 rounded-lg p-6 w-full"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >

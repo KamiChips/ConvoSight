@@ -89,51 +89,68 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Dashboard Preview Section */}
         <section className="px-6 md:px-12 lg:px-20 py-12 md:py-16">
-          <div className="bg-[#0F1B35] border border-[#1E3A5F] rounded-xl p-6 md:p-8">
-            {/* Browser Header */}
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
+          <div className="bg-[#0F284C] border border-[#B4AFF3]/25 border-opacity-25 rounded-xl overflow-hidden">
+            <div className="bg-[#071C3B] border-b border-[#B4AFF3]/25 border-opacity-25 p-4">
+              <div className="flex items-center space-x-2">
+                <div className="flex space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                </div>
+                <p className="text-xs text-[#7A9EB8] ml-4">
+                  convosight.app/dashboard
+                </p>
               </div>
-              <p className="text-xs text-[#7A9EB8] ml-4">
-                convosight.app/dashboard
-              </p>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              <StatCard
-                label="Analyzed"
-                value="1,247"
-                change="+48 today"
-                changeType="positive"
-              />
-              <StatCard
-                label="Avg Score"
-                value="82.4"
-                change="+31 this week"
-                changeType="positive"
-              />
-              <StatCard
-                label="Flagged"
-                value="34"
-                change="Needs review"
-                changeType="warning"
-              />
-              <StatCard
-                label="Agents"
-                value="6"
-                change="Active now"
-                changeType="positive"
-              />
-            </div>
+            <div className="p-6 md:p-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div className="bg-[#071C3B] border border-[#B4AFF3]/25 border-opacity-25 rounded-lg p-6">
+                  <p className="text-[#7A9EB8] text-sm font-medium mb-3">
+                    Analyzed
+                  </p>
+                  <p className="text-4xl font-bold text-white mb-2">1,247</p>
+                  <p className="text-xs font-medium text-[#4CAF50]">
+                    +48 today
+                  </p>
+                </div>
+                <div className="bg-[#071C3B] border border-[#B4AFF3]/25 border-opacity-25 rounded-lg p-6">
+                  <p className="text-[#7A9EB8] text-sm font-medium mb-3">
+                    Avg Score
+                  </p>
+                  <p className="text-4xl font-bold text-white mb-2">82.4</p>
+                  <p className="text-xs font-medium text-[#4CAF50]">
+                    +31 this week
+                  </p>
+                </div>
+                <div className="bg-[#071C3B] border border-[#B4AFF3]/25 border-opacity-25 rounded-lg p-6">
+                  <p className="text-[#7A9EB8] text-sm font-medium mb-3">
+                    Flagged
+                  </p>
+                  <p className="text-4xl font-bold text-white mb-2">34</p>
+                  <p className="text-xs font-medium text-[#F54E00]">
+                    Needs review
+                  </p>
+                </div>
+                <div className="bg-[#071C3B] border border-[#B4AFF3]/25 border-opacity-25 rounded-lg p-6">
+                  <p className="text-[#7A9EB8] text-sm font-medium mb-3">
+                    Agents
+                  </p>
+                  <p className="text-4xl font-bold text-white mb-2">6</p>
+                  <p className="text-xs font-medium text-[#4CAF50]">
+                    Active now
+                  </p>
+                </div>
+              </div>
 
-            {/* Chart */}
-            <ChartCard title="Conversation Quality Trends" data={chartData} />
+              <div className="bg-[#071C3B] border border-[#B4AFF3]/25 border-opacity-25 rounded-lg p-6 w-full">
+                <ChartCard
+                  title="Conversation Quality Trends"
+                  data={chartData}
+                />
+              </div>
+            </div>
           </div>
         </section>
 
@@ -231,10 +248,51 @@ export default function Home() {
             </Link>
           </div>
         </section>
-
-        {/* Footer Spacing */}
-        <div className="h-12" />
       </main>
+
+      <footer className="bg-[#071C3B] border-t border-[#1E3A5F]">
+        <div className="px-6 md:px-12 lg:px-20 py-12">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-8">
+            <div className="flex items-center space-x-3">
+              <div className="flex bg-[#715FD5] items-center justify-center p-2 rounded-lg">
+                <svg
+                  className="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z"
+                  />
+                </svg>
+              </div>
+              <span className="font-extrabold text-white">
+                ConvoSight<span className="text-[#F54E00]">.</span>
+              </span>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-6 text-center sm:text-right">
+              <Link
+                href="/terms"
+                className="text-[#7A9EB8] hover:text-white transition-colors text-sm"
+              >
+                Terms of Service
+              </Link>
+              <Link
+                href="/privacy"
+                className="text-[#7A9EB8] hover:text-white transition-colors text-sm"
+              >
+                Privacy Policy
+              </Link>
+              <p className="text-[#7A9EB8] text-sm">
+                © 2026 ConvoSight. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
