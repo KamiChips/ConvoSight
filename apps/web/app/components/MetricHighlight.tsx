@@ -5,13 +5,22 @@ interface MetricHighlightProps {
   label: string;
 }
 
-export default function MetricHighlight({ value, label }: MetricHighlightProps) {
+export default function MetricHighlight({
+  value,
+  label,
+}: MetricHighlightProps) {
   return (
-    <div className="flex flex-col items-center justify-center flex-1 min-w-[150px]">
-      <p className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-[#715FD5] to-[#F54E00] bg-clip-text text-transparent mb-2">
+    <div className="flex flex-col items-center justify-center flex-1 min-w-[150px] py-8">
+      <p
+        style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+        className="text-5xl md:text-6xl font-bold text-white mb-4"
+      >
         {value}
       </p>
-      <p className="text-[#7A9EB8] text-sm md:text-base text-center font-medium">
+      <p
+        style={{ fontFamily: "var(--font-outfit)" }}
+        className="text-[#7A9EB8] text-sm md:text-base text-center font-normal mb-6"
+      >
         {label}
       </p>
     </div>
