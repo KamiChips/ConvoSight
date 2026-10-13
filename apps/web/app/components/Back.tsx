@@ -2,9 +2,12 @@ import Link from "next/link";
 
 export default function Back() {
   return (
-    <nav className="flex flex-row w-full items-center justify-between px-10 h-fit">
+    <nav className="flex flex-row w-full items-center justify-between px-4 sm:px-10 h-fit bg-transparent ">
       <div className="flex items-center justify-center space-x-4 my-5">
-        <Link href="/" className="flex flex-row space-x-2 hover:font-bold">
+        <Link
+          href="/"
+          className="flex flex-row space-x-2 text-[#7A9EB8] hover:text-white hover:font-bold"
+        >
           <svg
             className="w-6 h-6 "
             aria-hidden="true"
