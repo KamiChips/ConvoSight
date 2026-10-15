@@ -41,7 +41,7 @@ export default function Home() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
                 Stop guessing.
               </h1>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-gradient-to-br from-[#1B0EAA] to-[#F54E00] bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-linear-to-br from-[#1B0EAA] to-[#F54E00] bg-clip-text text-transparent">
                 Start supervising.
               </h1>
             </div>
@@ -129,7 +129,7 @@ export default function Home() {
             </div>
 
             <div className="p-6 md:p-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                 <div className="bg-[#071C3B] border border-[#B4AFF3]/25 border-opacity-25 rounded-lg p-6">
                   <p className="text-[#7A9EB8] text-sm font-medium mb-3">
                     Analyzed
